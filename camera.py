@@ -4,6 +4,17 @@ import imutils
 import time
 import datetime
 
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from PIL import Image
+import os
+import io
+
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
+
+drive = GoogleDrive(gauth)
+
 motionCounter = 0
 count = 0
 
@@ -54,6 +65,11 @@ while True:
 
         if motionCounter >= 10:
             count += 1
+            title = "Snapshot " + "Day " + str(time.localtime()[2]) + " Hour " + str(time.localtime()[3]) + " Minute " + str(time.localtime()[4]) + " Second " + str(time.localtime()[5]) + ".jpg"
+            cv.imwrite("tmp.jpg", frame)
+            file1 = drive.CreateFile({'title': title, 'mimeType':'image/jpeg'})
+            file1.SetContentFile("tmp.jpg")
+            file1.Upload()
             #cv.imwrite("Snapshot " + "Day " + str(time.localtime()[2]) + " Hour " + str(time.localtime()[3]) + " Minute " + str(time.localtime()[4]) + " Second " + str(time.localtime()[5]) + ".jpg", frame)
             motionCounter = 0
 
