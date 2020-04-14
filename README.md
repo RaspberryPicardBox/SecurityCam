@@ -1,2 +1,4 @@
 # SecurityCam
-A Python based security camera script using OpenCV.
+A Python3 based security camera script using OpenCV.
+
+Requires OpenCV-python and Numpy.
