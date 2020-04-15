@@ -44,7 +44,11 @@ while True:
         avg = gray.copy().astype("float")
         continue
 
-    cv.accumulateWeighted(gray, avg, 0.2)
+    if time.localtime()[3] > 20:
+        cv.accumulateWeighted(gray, avg, 0.8)
+    elif time.localtime()[3] > 8 and time.localtime()[3] < 20:
+        cv.accumulateWeighted(gray, avg, 0.2)
+        
     frameDelta = cv.absdiff(gray, cv.convertScaleAbs(avg))
     thresh = cv.threshold(frameDelta, 25, 255, cv.THRESH_BINARY) [1]
 
@@ -70,7 +74,7 @@ while True:
             file1 = drive.CreateFile({'title': title, 'mimeType':'image/jpeg'})
             file1.SetContentFile("tmp.jpg")
             file1.Upload()
-            #cv.imwrite("Snapshot " + "Day " + str(time.localtime()[2]) + " Hour " + str(time.localtime()[3]) + " Minute " + str(time.localtime()[4]) + " Second " + str(time.localtime()[5]) + ".jpg", frame)
+            cv.imwrite("Snapshot " + "Day " + str(time.localtime()[2]) + " Hour " + str(time.localtime()[3]) + " Minute " + str(time.localtime()[4]) + " Second " + str(time.localtime()[5]) + ".jpg", frame)
             motionCounter = 0
 
         
