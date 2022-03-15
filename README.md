@@ -2,7 +2,7 @@
 A Python3 based security camera script using OpenCV.
 
 # Features
-When motion is detected, snapshots are taken using the devices camera, and automatically uploaded to Google Drive cloud. When there are too many, they snapshot-deleter searches out and deltes any created images, leaving a nice clean root directory.
+When motion is detected, snapshots are taken using the devices camera, and automatically uploaded to Google Drive cloud. When there are too many, they snapshot-deleter searches out and deletes any created images, leaving a nice clean root directory.
 
 Note: Images are stored in the root directory of your Google Drive account - it is recommended you use an empty Drive, as things can fill up fast and deletion may cause issues with other files!
 
